@@ -12,31 +12,54 @@ class Portfolio:
 
         self.trade_history = []
 
-    def buy(self, price):
 
-        if self.position == 0:
+    def buy(self, price,shares):
 
-            self.position = 1
+     if self.position == 0:
+
+        cost = price * shares
+
+        if self.cash >= cost:
+
+            self.cash -= cost
+
+            self.position = shares
+
             self.entry_price = price
 
-            print(f"BUY  -> {price:.2f}")
+            print("=" * 50)
+            print("BUY ORDER")
+            print("=" * 50)
+            print(f"Price          : {price:.2f}")
+            print(f"Shares         : {shares}")
+            print(f"Trade Value    : {cost:.2f}")
+            print(f"Remaining Cash : {self.cash:.2f}")
 
     def sell(self, price):
 
-        if self.position == 1:
+       if self.position > 0:
 
-            profit = price - self.entry_price
+        proceeds = price * self.position
 
-            self.cash += profit
+        cost = self.entry_price * self.position
 
-            self.trade_history.append(profit)
+        profit = proceeds - cost
 
-            print(
-                f"SELL -> {price:.2f} | Profit {profit:.2f}"
-            )
+        self.cash += proceeds
 
-            self.position = 0
-            self.entry_price = None
+        self.trade_history.append(profit)
+
+        print("=" * 50)
+        print("SELL ORDER")
+        print("=" * 50)
+        print(f"Price          : {price:.2f}")
+        print(f"Shares         : {self.position}")
+        print(f"Trade Value    : {proceeds:.2f}")
+        print(f"Profit         : {profit:.2f}")
+        print(f"Cash Balance   : {self.cash:.2f}")
+
+        self.position = 0
+        self.entry_price = None
 
     def get_trade_history(self):
         return self.trade_history

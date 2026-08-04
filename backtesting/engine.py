@@ -1,7 +1,7 @@
 from backtesting.portfolio import Portfolio
 from backtesting.metrics import PerformanceMetrics
 from risk_management.risk_manager import RiskManager
-
+from risk_management.position_sizing import PositionSizing
 
 class BacktestEngine:
 
@@ -12,6 +12,8 @@ class BacktestEngine:
         self.portfolio = Portfolio(initial_capital)
 
         self.risk_manager = RiskManager()
+
+        self.position_sizing = PositionSizing()
 
     def run(self):
 
@@ -24,12 +26,15 @@ class BacktestEngine:
 
             if signal == 1:
 
-                if self.risk_manager.approve_trade(self.portfolio):
+                    shares = self.position_sizing.calculate_position_size(
+                        capital=self.portfolio.cash,
+                        entry_price=price,
+                        stop_loss=price * 0.95
+                    )
 
-                    self.portfolio.buy(price)
-                else:
+                    if self.risk_manager.approve_trade(self.portfolio):
 
-                    print("Trade not approved by Risk Manager.")
+                        self.portfolio.buy(price, shares)
 
             elif signal == -1:
 

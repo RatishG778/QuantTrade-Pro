@@ -1,7 +1,7 @@
 from core.portfolio_engine.loader import PortfolioLoader
 from core.strategies.strategy_factory import StrategyFactory
 from core.backtesting.engine import BacktestEngine
-
+from core.portfolio_engine.allocator import PortfolioAllocator
 
 class PortfolioEngine:
 
@@ -19,7 +19,10 @@ class PortfolioEngine:
 
         results = {}
 
-        capital_per_stock = self.capital / len(portfolio)
+        allocator = PortfolioAllocator(self.capital)
+        allocation = allocator.equal_weight(
+            list(portfolio.keys())
+        )
 
         for symbol, df in portfolio.items():
 
@@ -30,7 +33,7 @@ class PortfolioEngine:
 
             engine = BacktestEngine(
                 strategy,
-                initial_capital=capital_per_stock
+                initial_capital=allocation[symbol]["capital"]
             )
 
             engine.run()

@@ -1,3 +1,4 @@
+from config.logger import logger
 class Portfolio:
 
     
@@ -29,7 +30,7 @@ class Portfolio:
             self.entry_price = price
 
             print("=" * 50)
-            print("BUY ORDER")
+            logger.info("BUY ORDER")
             print("=" * 50)
             print(f"Price          : {price:.2f}")
             print(f"Shares         : {shares}")
@@ -53,7 +54,7 @@ class Portfolio:
         self.trade_history.append(profit)
 
         print("=" * 50)
-        print("SELL ORDER")
+        logger.info("SELL ORDER")
         print("=" * 50)
         print(f"Price          : {price:.2f}")
         print(f"Shares         : {self.position}")

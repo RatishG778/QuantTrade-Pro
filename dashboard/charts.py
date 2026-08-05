@@ -70,3 +70,14 @@ def price_chart(df):
     )
 
     return fig
+def correlation_heatmap(correlation):
+
+    fig = px.imshow(
+        correlation,
+        text_auto=".2f",
+        color_continuous_scale="RdBu_r",
+        aspect="auto",
+        title="Portfolio Correlation Matrix"
+    )
+
+    return fig

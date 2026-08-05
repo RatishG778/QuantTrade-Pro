@@ -6,6 +6,7 @@ from dashboard.tables import trade_table
 from dashboard.charts import price_chart
 from dashboard.run_backtest import run_backtest
 from dashboard.performance import performance_cards
+from dashboard.charts import correlation_heatmap
 
 st.set_page_config(
     page_title="QuantTrade-Pro",
@@ -47,11 +48,16 @@ else:
 
     st.subheader("Trading Signals")
 
+    st.subheader("Portfolio Correlation")
+    
+    fig = correlation_heatmap(correlation_matrix)
+    
+    st.plotly_chart(fig, use_container_width=True)
+
     st.plotly_chart(
         price_chart(results["data"]),
         use_container_width=True
-)
-
+) 
 
     st.subheader("Trade History")
 

@@ -1,0 +1,2 @@
+Date,Experiment,Strategy,Symbol,Capital,Parameters,Profit,Trades
+2026-08-05 18:32:03.930935,Moving Average Test,Moving Average,AAPL,100000,"{'fast': 20, 'slow': 50}",8570.23785351565,15

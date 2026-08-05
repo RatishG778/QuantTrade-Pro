@@ -3,33 +3,32 @@ import pandas as pd
 from core.backtesting.engine import BacktestEngine
 from core.strategies.strategy_factory import StrategyFactory
 from config.settings import DEFAULT_STRATEGY, DEFAULT_SYMBOL, INITIAL_CAPITAL
+from core.exceptions import QuantTradeError
+from config.logger import logger
 
+try:
+    def run_backtest(symbol, capital, strategy_name):
 
-def run_backtest(symbol, capital,strategy_name):
+        BASE_DIR = Path(__file__).resolve().parent.parent
 
-    BASE_DIR = Path(__file__).resolve().parent.parent
-
-    df = pd.read_csv(
+        df = pd.read_csv(
         BASE_DIR / "data" / "features" / f"{symbol}.csv"
     )
-
-    strategy = StrategyFactory.get_strategy(
+        strategy = StrategyFactory.get_strategy(
         strategy_name,
         df
     )
+        data = strategy.generate_signals()
 
-    data = strategy.generate_signals()
+        print(data.columns.tolist())
 
-    print(data.columns.tolist())
-
-    engine = BacktestEngine(
+        engine = BacktestEngine(
         strategy,
         initial_capital=capital
     )
+        engine.run()
 
-    engine.run()
-
-    return {
+        return {
         "capital": engine.portfolio.cash,
         "profit": sum(engine.portfolio.trade_history),
         "trades": len(engine.portfolio.trade_history),
@@ -37,25 +36,26 @@ def run_backtest(symbol, capital,strategy_name):
         "trade_history": engine.portfolio.trade_history,
         "data": data
     }
-def compare_strategies(symbol, capital):
 
-    strategies = [
+    def compare_strategies(symbol, capital):
+
+        strategies = [
         "Moving Average",
         "RSI",
         "MACD"
     ]
 
-    summary = []
+        summary = []
 
-    for name in strategies:
+        for name in strategies:
 
-        result = run_backtest(
+            result = run_backtest(
             DEFAULT_SYMBOL,
             INITIAL_CAPITAL,
             DEFAULT_STRATEGY
         )
 
-        summary.append({
+            summary.append({
 
             "Strategy": name,
 
@@ -75,5 +75,11 @@ def compare_strategies(symbol, capital):
                 2
             )
         })
+            return summary
 
-    return summary
+
+except QuantTradeError as e:
+
+    logger.error(str(e))
+
+    raise

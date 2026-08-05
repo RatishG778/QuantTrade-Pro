@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+from core.exceptions import DataNotFoundError
 
 
 class PortfolioLoader:
@@ -22,9 +23,9 @@ class PortfolioLoader:
 
             if not file_path.exists():
 
-                print(f"{symbol} not found.")
-
-                continue
+               raise DataNotFoundError(
+                   f"Data file not found: {file_path}"
+                )
 
             portfolio[symbol] = pd.read_csv(file_path)
 

@@ -1,6 +1,7 @@
 from core.strategies.moving_average import MovingAverageStrategy
 from core.strategies.rsi_strategy import RSIStrategy
 from core.strategies.macd_strategy import MACDStrategy
+from core.exceptions import StrategyError
 
 
 class StrategyFactory:
@@ -15,6 +16,6 @@ class StrategyFactory:
         }
 
         if name not in strategies:
-            raise ValueError(f"Unknown strategy: {name}")
+            raise StrategyError(f"Unknown strategy: {name}")
 
         return strategies[name](data)

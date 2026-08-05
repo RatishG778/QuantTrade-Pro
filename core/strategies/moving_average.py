@@ -1,5 +1,4 @@
-from strategies.base_strategy import BaseStrategy
-
+from core.strategies.base_strategy import BaseStrategy
 
 class MovingAverageStrategy(BaseStrategy):
 

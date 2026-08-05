@@ -11,6 +11,7 @@ class Portfolio:
         self.entry_price = None
 
         self.trade_history = []
+        self.equity_curve = [self.cash]
 
 
     def buy(self, price,shares):
@@ -46,6 +47,8 @@ class Portfolio:
         profit = proceeds - cost
 
         self.cash += proceeds
+
+        self.equity_curve.append(self.cash)
 
         self.trade_history.append(profit)
 

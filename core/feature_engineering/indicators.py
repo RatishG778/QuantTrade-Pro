@@ -7,7 +7,10 @@ import ta
 # ----------------------------------
 
 INPUT_PATH = Path("data/processed")
-OUTPUT_PATH = Path("feature_engineering/output")
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+INPUT_PATH = BASE_DIR / "data" / "processed"
+OUTPUT_PATH = BASE_DIR / "data" / "features"
 
 OUTPUT_PATH.mkdir(parents=True, exist_ok=True)
 

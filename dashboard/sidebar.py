@@ -1,4 +1,6 @@
 import streamlit as st
+from config.settings import INITIAL_CAPITAL
+from config.constants import SYMBOLS, STRATEGIES
 
 
 def sidebar():
@@ -7,20 +9,12 @@ def sidebar():
 
     symbol = st.sidebar.selectbox(
         "Stock",
-        [
-            "AAPL",
-            "MSFT",
-            "GOOGL",
-            "AMZN",
-            "META",
-            "NVDA",
-            "TSLA"
-        ]
+        SYMBOLS
     )
 
     initial_capital = st.sidebar.number_input(
         "Initial Capital",
-        value=100000
+        value=INITIAL_CAPITAL
     )
 
     risk = st.sidebar.slider(
@@ -45,13 +39,9 @@ def sidebar():
     )
 
     strategy = st.sidebar.selectbox(
-    "Strategy",
-    [
-        "Moving Average",
-        "RSI",
-        "MACD"
-    ]
-)
+        "Strategy",
+        STRATEGIES
+    )
     compare = st.sidebar.checkbox(
     "Compare All Strategies"
 )

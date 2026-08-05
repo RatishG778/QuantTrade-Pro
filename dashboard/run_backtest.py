@@ -2,6 +2,7 @@ from pathlib import Path
 import pandas as pd
 from core.backtesting.engine import BacktestEngine
 from core.strategies.strategy_factory import StrategyFactory
+from config.settings import DEFAULT_STRATEGY, DEFAULT_SYMBOL, INITIAL_CAPITAL
 
 
 def run_backtest(symbol, capital,strategy_name):
@@ -49,9 +50,9 @@ def compare_strategies(symbol, capital):
     for name in strategies:
 
         result = run_backtest(
-            symbol,
-            capital,
-            name
+            DEFAULT_SYMBOL,
+            INITIAL_CAPITAL,
+            DEFAULT_STRATEGY
         )
 
         summary.append({

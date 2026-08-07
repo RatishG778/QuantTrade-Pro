@@ -14,6 +14,9 @@ class Portfolio:
         self.trade_history = []
         self.equity_curve = [self.cash]
 
+    def get_equity_curve(self):
+       return self.equity_curve
+
 
     def buy(self, price,shares):
 

@@ -49,7 +49,7 @@ else:
     st.subheader("Trading Signals")
 
     st.plotly_chart(
-        price_chart(results["data"]),
+        price_chart(results.data),
         use_container_width=True
 ) 
 

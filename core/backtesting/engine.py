@@ -4,6 +4,7 @@ from core.risk.risk_manager import RiskManager
 from core.risk.position_sizing import PositionSizing
 from core.backtesting.broker import Broker
 from core.backtesting.analytics import Analytics
+from core.backtesting.result import BacktestResult
 
 class BacktestEngine:
 
@@ -63,7 +64,7 @@ class BacktestEngine:
 
         # ---------------- Portfolio Summary ----------------
 
-        self.portfolio.summary()
+        
 
         # ---------------- Performance ----------------
 
@@ -71,7 +72,7 @@ class BacktestEngine:
             self.portfolio.get_trade_history()
         )
 
-        metrics.calculate()
+        
 
         # ---------------- Analytics ----------------
 
@@ -80,18 +81,33 @@ class BacktestEngine:
             self.portfolio.trade_history
         )
 
-        print("\n" + "=" * 50)
-        print("ADVANCED ANALYTICS")
-        print("=" * 50)
+      
 
-        print(f"Average Win      : {analytics.average_win():.2f}")
-        print(f"Average Loss     : {analytics.average_loss():.2f}")
-        print(f"Profit Factor    : {analytics.profit_factor():.2f}")
-        print(f"Risk Reward      : {analytics.risk_reward():.2f}")
-        print(f"Maximum Drawdown : {analytics.max_drawdown():.2f}%")
+        return BacktestResult(
 
-        return {
-            "capital": self.portfolio.cash,
-            "equity_curve": self.portfolio.equity_curve,
-            "trade_history": self.portfolio.trade_history
-}
+    data=data,
+
+    profit=sum(self.portfolio.get_trade_history()),
+
+    trades=len(self.portfolio.get_trade_history()),
+
+    trade_history=self.portfolio.get_trade_history(),
+
+    equity=self.portfolio.get_equity_curve(),
+
+    final_capital=self.portfolio.cash,
+
+    average_win=analytics.average_win(),
+
+    average_loss=analytics.average_loss(),
+
+    profit_factor=analytics.profit_factor(),
+
+    risk_reward=analytics.risk_reward(),
+
+    max_drawdown=analytics.max_drawdown()
+
+)
+    
+
+    

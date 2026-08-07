@@ -3,7 +3,7 @@ import streamlit as st
 
 def performance_cards(results):
 
-    trade_history = results["trade_history"]
+    trade_history = results.trade_history
 
     wins = len([x for x in trade_history if x > 0])
     losses = len([x for x in trade_history if x < 0])

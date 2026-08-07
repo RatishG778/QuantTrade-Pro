@@ -3,9 +3,9 @@ import streamlit as st
 
 def show_metrics(results):
 
-    capital = results["capital"]
-    profit = results["profit"]
-    trades = results["trades"]
+    capital = results.final_capital
+    profit = results.profit
+    trades = results.trades
 
     col1, col2, col3, col4 = st.columns(4)
 

@@ -5,8 +5,6 @@ from datetime import datetime
 @dataclass
 class Experiment:
 
-    name: str
-
     strategy: str
 
     symbol: str
@@ -15,4 +13,4 @@ class Experiment:
 
     parameters: dict
 
-    created_at: datetime = datetime.now()
+    created_at: str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

@@ -7,6 +7,8 @@ from dashboard.charts import price_chart
 from dashboard.run_backtest import run_backtest
 from dashboard.performance import performance_cards
 from dashboard.charts import correlation_heatmap
+from dashboard.experiments import experiments_history
+from dashboard.leaderboard import leaderboard_page
 
 st.set_page_config(
     page_title="QuantTrade-Pro",
@@ -56,3 +58,11 @@ else:
     st.subheader("Trade History")
 
     trade_table(results)
+
+    st.divider()
+
+    experiments_history()
+
+    st.divider()
+
+    leaderboard_page()

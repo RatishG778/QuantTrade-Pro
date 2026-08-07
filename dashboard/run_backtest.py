@@ -22,7 +22,10 @@ def run_backtest(
     symbol=DEFAULT_SYMBOL,
     capital=INITIAL_CAPITAL,
     strategy_name=DEFAULT_STRATEGY,
+    parameters=None
 ):
+    if parameters is None:
+        parameters = {}
 
     try:
 
@@ -37,7 +40,8 @@ def run_backtest(
 
         strategy = StrategyFactory.get_strategy(
             strategy_name,
-            df
+            df,
+            **parameters
         )
 
         engine = BacktestEngine(

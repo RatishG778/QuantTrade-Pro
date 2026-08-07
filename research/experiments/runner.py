@@ -1,41 +1,32 @@
-from dashboard.run_backtest import run_backtest
+from datetime import datetime
 
+from dashboard.run_backtest import run_backtest
 from research.database.repository import ExperimentRepository
 
 
 class ExperimentRunner:
 
     def __init__(self):
-
         self.repository = ExperimentRepository()
 
     def run(
-
         self,
-
         strategy,
-
         symbol,
-
         capital,
-
         parameters
-
     ):
 
-        results = run_backtest(
-
-            symbol,
-
-            capital,
-
-            strategy
-
+        result = run_backtest(
+            symbol=symbol,
+            capital=capital,
+            strategy_name=strategy,
+            parameters=parameters
         )
 
         experiment = {
 
-            "created_at": __import__("datetime").datetime.now(),
+            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 
             "strategy": strategy,
 
@@ -45,20 +36,23 @@ class ExperimentRunner:
 
             "parameters": str(parameters),
 
-            "profit": results["profit"],
+            "profit": result.profit,
 
-            "return_pct": results["return_pct"],
+            # Temporary values until we calculate them properly
+            "return_pct": (
+                (result.final_capital - capital) / capital * 100
+            ),
 
-            "sharpe": results["sharpe"],
+            "sharpe": 0.0,
 
-            "max_drawdown": results["drawdown"],
+            "max_drawdown": result.max_drawdown,
 
-            "trades": results["trades"],
+            "trades": result.trades,
 
-            "win_rate": results["win_rate"]
+            "win_rate": 0.0
 
         }
 
         self.repository.save(experiment)
 
-        return results
+        return result

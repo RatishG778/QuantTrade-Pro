@@ -1,5 +1,5 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 
 class PortfolioOptimizer:
@@ -18,40 +18,41 @@ class PortfolioOptimizer:
 
         return returns.dropna()
 
-    def equal_weight_portfolio(self):
+    def statistics(self):
 
-        returns = self.returns()
+        r = self.returns()
 
-        n = len(returns.columns)
+        mean = r.mean() * 252
+        cov = r.cov() * 252
 
-        weights = np.repeat(1 / n, n)
+        return mean, cov
 
-        expected_return = (
-            returns.mean() * weights
-        ).sum()
+    def portfolio_performance(self, weights):
 
-        covariance = returns.cov()
+        mean, cov = self.statistics()
+
+        expected_return = np.sum(mean * weights)
 
         risk = np.sqrt(
-            weights.T @ covariance @ weights
+
+            weights.T @ cov @ weights
+
+        )
+
+        sharpe = (
+
+            expected_return / risk
+
+            if risk > 0 else 0
+
         )
 
         return {
 
-            "weights": dict(
+            "return": expected_return,
 
-                zip(
+            "risk": risk,
 
-                    returns.columns,
-
-                    weights
-
-                )
-
-            ),
-
-            "expected_return": expected_return,
-
-            "risk": risk
+            "sharpe": sharpe
 
         }

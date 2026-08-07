@@ -48,12 +48,6 @@ else:
 
     st.subheader("Trading Signals")
 
-    st.subheader("Portfolio Correlation")
-    
-    fig = correlation_heatmap(correlation_matrix)
-    
-    st.plotly_chart(fig, use_container_width=True)
-
     st.plotly_chart(
         price_chart(results["data"]),
         use_container_width=True

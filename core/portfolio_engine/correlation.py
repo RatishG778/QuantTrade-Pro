@@ -7,7 +7,7 @@ class CorrelationEngine:
 
         self.portfolio = portfolio
 
-    def calculate(self):
+    def matrix(self):
 
         prices = pd.DataFrame()
 
@@ -15,6 +15,28 @@ class CorrelationEngine:
 
             prices[symbol] = df["Close"]
 
-        correlation = prices.corr()
+        return prices.corr()
 
-        return correlation
+    def strongest_positive(self):
+
+        corr = self.matrix()
+
+        corr = corr.where(corr != 1)
+
+        pair = corr.stack().idxmax()
+
+        value = corr.stack().max()
+
+        return pair, value
+
+    def strongest_negative(self):
+
+        corr = self.matrix()
+
+        corr = corr.where(corr != 1)
+
+        pair = corr.stack().idxmin()
+
+        value = corr.stack().min()
+
+        return pair, value

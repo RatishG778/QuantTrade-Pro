@@ -9,6 +9,9 @@ from dashboard.performance import performance_cards
 from dashboard.charts import correlation_heatmap
 from dashboard.experiments import experiments_history
 from dashboard.leaderboard import leaderboard_page
+from dashboard.heatmap import heatmap_page
+from dashboard.portfolio_dashboard import portfolio_dashboard
+from dashboard.research_dashboard import research_dashboard
 
 st.set_page_config(
     page_title="QuantTrade-Pro",
@@ -66,3 +69,13 @@ else:
     st.divider()
 
     leaderboard_page()
+
+    st.divider()
+
+    heatmap_page()
+
+    st.divider()
+
+    portfolio_dashboard()
+
+    research_dashboard()

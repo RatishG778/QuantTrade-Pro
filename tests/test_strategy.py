@@ -1,14 +1,12 @@
-import pandas as pd
-
-from strategies.moving_average import MovingAverageStrategy
+from core.strategies.moving_average import MovingAverageStrategy
 
 
-df = pd.read_csv(
-    "feature_engineering/output/AAPL.csv"
-)
+def test_strategy(sample_data):
 
-strategy = MovingAverageStrategy(df)
+    strategy = MovingAverageStrategy(
+        sample_data
+    )
 
-result = strategy.generate_signals()
+    result = strategy.generate_signals()
 
-print(result[["Close", "SMA_20", "SMA_50", "Signal"]].tail())
+    assert "Signal" in result.columns

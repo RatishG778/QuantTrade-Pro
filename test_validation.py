@@ -1,23 +1,13 @@
-from research.validation.validator import ValidationEngine
+from research.validation.metrics import ValidationMetrics
 
-engine = ValidationEngine()
+score = ValidationMetrics.robustness_score(
 
-result = engine.validate(
+    walk_forward_pass_rate=0.90,
 
-    symbol="AAPL",
+    monte_carlo_pass_rate=0.85,
 
-    capital=100000,
-
-    strategy="Moving Average",
-
-    parameters={
-
-        "fast":10,
-
-        "slow":60
-
-    }
+    max_drawdown=8
 
 )
 
-print(result)
+print(score)

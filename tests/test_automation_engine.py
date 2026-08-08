@@ -1,16 +1,15 @@
 from automation.automation_engine import AutomationEngine
+from automation.config import AutomationConfig
 
 engine = AutomationEngine()
 
-results = engine.run(
+config = AutomationConfig(
 
     symbols=[
 
         "AAPL",
 
-        "MSFT",
-
-        "GOOGL"
+        "MSFT"
 
     ],
 
@@ -18,9 +17,7 @@ results = engine.run(
 
         "Moving Average",
 
-        "RSI",
-
-        "MACD"
+        "RSI"
 
     ],
 
@@ -28,4 +25,6 @@ results = engine.run(
 
 )
 
-print(len(results))
+results = engine.run(config)
+
+print(f"\nCompleted {len(results)} experiments.")

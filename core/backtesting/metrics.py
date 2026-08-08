@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class PerformanceMetrics:
 
     def __init__(self, trades):
@@ -8,32 +11,53 @@ class PerformanceMetrics:
 
         total_trades = len(self.trades)
 
-        wins = len([t for t in self.trades if t > 0])
+        wins = len([
+            t for t in self.trades
+            if t > 0
+        ])
 
-        losses = len([t for t in self.trades if t <= 0])
+        losses = len([
+            t for t in self.trades
+            if t <= 0
+        ])
 
         total_profit = sum(self.trades)
 
-        win_rate = 0
+        win_rate = 0.0
 
         if total_trades > 0:
 
-            win_rate = wins / total_trades * 100
+            win_rate = (
+                wins / total_trades
+            ) * 100
 
-        print("\n")
+        return {
+            "total_trades": total_trades,
+            "wins": wins,
+            "losses": losses,
+            "win_rate": win_rate,
+            "profit": total_profit
+        }
 
-        print("=" * 50)
+    def sharpe_ratio(
+        self,
+        risk_free_rate: float = 0.0
+    ) -> float:
 
-        print("Performance Report")
+        if len(self.trades) < 2:
+            return 0.0
 
-        print("=" * 50)
+        returns = np.asarray(
+            self.trades,
+            dtype=float
+        )
 
-        print(f"Total Trades : {total_trades}")
+        volatility = returns.std()
 
-        print(f"Wins         : {wins}")
+        if volatility == 0:
+            return 0.0
 
-        print(f"Losses       : {losses}")
-
-        print(f"Win Rate     : {win_rate:.2f}%")
-
-        print(f"Net Profit   : {total_profit:.2f}")
+        return (
+            (returns.mean() - risk_free_rate)
+            / volatility
+        )

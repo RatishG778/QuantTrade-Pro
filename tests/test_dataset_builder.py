@@ -1,6 +1,6 @@
 import pandas as pd
 
-from ml_models.dataset_builder import DatasetBuilder
+from ml.dataset_builder import DatasetBuilder
 
 df = pd.read_csv("data/features/AAPL.csv")
 

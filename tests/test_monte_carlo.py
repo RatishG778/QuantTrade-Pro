@@ -1,36 +1,33 @@
 from research.monte_carlo.simulator import MonteCarloSimulator
+from research.monte_carlo.report import MonteCarloReport
 
-from dashboard.run_backtest import run_backtest
 
+def test_monte_carlo_pipeline():
 
-result = run_backtest(
+    trades = [
+        100,
+        -50,
+        200,
+        -100,
+        150
+    ]
 
-    symbol="AAPL",
+    results = MonteCarloSimulator().simulate(
+        trades,
+        simulations=100
+    )
 
-    capital=100000,
+    assert len(results) == 100
 
-    strategy_name="Moving Average"
+    report = MonteCarloReport().generate(
+        results
+    )
 
-)
-
-sim = MonteCarloSimulator()
-
-profits = sim.simulate(
-
-    result.trade_history,
-
-    simulations=100
-
-)
-
-print("=" * 60)
-
-print("Monte Carlo")
-
-print("=" * 60)
-
-print("Best :", max(profits))
-
-print("Worst:", min(profits))
-
-print("Average:", sum(profits)/len(profits))
+    assert "best" in report
+    assert "worst" in report
+    assert "average" in report
+    assert "median" in report
+    assert "p5" in report
+    assert "p95" in report
+    assert "probability_of_profit" in report
+    assert "probability_of_loss" in report

@@ -1,16 +1,16 @@
 import streamlit as st
 
-from dashboard.experiments import experiment_history
+from dashboard.experiments import experiments_history
 from dashboard.leaderboard import leaderboard_page
 from dashboard.heatmap import heatmap_page
-from dashboard.portfolio import portfolio_dashboard
+from dashboard.portfolio_dashboard import portfolio_dashboard
 
 
 def research_dashboard():
 
     st.title("🧪 Quant Research Dashboard")
 
-    experiment_history()
+    experiments_history()
 
     st.divider()
 

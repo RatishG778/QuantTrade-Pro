@@ -17,3 +17,7 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+# QuantTrade-Pro runtime files
+logs/*.log
+research/database/*.db
+knowledge.json

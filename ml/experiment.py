@@ -1,6 +1,6 @@
-from ml_models.trainer import ModelTrainer
-from ml_models.predictor import Predictor
-from ml_models.evaluator import ModelEvaluator
+from ml.trainer import ModelTrainer
+from ml.predictor import Predictor
+from ml.evaluator import ModelEvaluator
 
 
 class MLExperiment:

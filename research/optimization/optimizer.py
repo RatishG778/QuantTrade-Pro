@@ -5,27 +5,14 @@ from research.experiments.runner import ExperimentRunner
 class Optimizer:
 
     def __init__(self):
-
         self.grid = GridSearch()
-
         self.runner = ExperimentRunner()
 
-    def optimize_moving_average(
-
-        self,
-
-        symbol,
-
-        capital
-
-    ):
+    def optimize_moving_average(self, symbol, capital):
 
         parameters = self.grid.moving_average(
-
             range(5, 35, 5),
-
             range(30, 210, 10)
-
         )
 
         results = []
@@ -41,21 +28,30 @@ class Optimizer:
             )
 
             result = self.runner.run(
-
                 strategy="Moving Average",
-
                 symbol=symbol,
-
                 capital=capital,
-
                 parameters=p
-
             )
 
             results.append(result)
 
+        if not results:
+            return []
+
+        results.sort(
+            key=lambda result: result.profit,
+            reverse=True
+        )
+
         print("=" * 60)
         print("OPTIMIZATION COMPLETED")
         print("=" * 60)
+
+        best = results[0]
+
+        print(f"Best Profit : {best.profit:.2f}")
+        print(f"Best Return : {best.return_pct:.2f}%")
+        print(f"Best Trades : {best.trades}")
 
         return results

@@ -1,7 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
-from ml_models.models.base_model import BaseModel
+from ml.models.base_model import BaseModel
 
 
 class RandomForestModel(BaseModel):

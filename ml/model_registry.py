@@ -1,4 +1,4 @@
-from ml_models.models.random_forest import RandomForestModel
+from ml.models.random_forest import RandomForestModel
 
 
 class ModelRegistry:

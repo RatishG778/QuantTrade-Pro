@@ -133,5 +133,14 @@
         "lesson": "Avoid sideways market.",
         "next_step": "Test with ADX filter.",
         "created_at": "2026-08-13T18:52:46.068353"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-13T18:57:33.681356"
     }
 ]

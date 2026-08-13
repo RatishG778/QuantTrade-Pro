@@ -52,5 +52,77 @@
         "lesson": "Avoid sideways market.",
         "next_step": "Test with ADX filter.",
         "created_at": "2026-08-08T15:30:14.470357"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-08T15:36:15.818681"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-08T15:43:02.765716"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-11T13:59:42.201719"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-13T17:32:47.689166"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-13T17:38:02.395902"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-13T18:07:21.215304"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-13T18:09:54.277865"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-08-13T18:14:55.393413"
     }
 ]

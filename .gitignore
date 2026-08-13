@@ -21,3 +21,8 @@ Thumbs.db
 logs/*.log
 research/database/*.db
 knowledge.json
+
+# Runtime-generated files
+knowledge.json
+logs/*.log
+research/database/*.db

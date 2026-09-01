@@ -1,221 +1,115 @@
-# 📈 QuantTrade-Pro
+# QuantTrade-Pro
 
-> A Professional Quantitative Trading Research Platform built with Python.
+> **Quantitative Research & Backtesting Platform**
 
----
-
-## 🚀 Overview
-
-QuantTrade-Pro is an end-to-end quantitative trading research platform for designing, testing, and analyzing trading strategies.
-
-The platform provides:
-
-- Historical market data processing
-- Technical indicator generation
-- Strategy development
-- Backtesting engine
-- Portfolio analytics
-- Risk management
-- Interactive dashboard
-- Research framework
+QuantTrade-Pro is a modular Python platform engineered for quantitative strategy development, signal research, portfolio allocation analytics, Monte Carlo tail risk evaluation, machine learning baseline modeling, and interactive Streamlit visualization.
 
 ---
 
-# ✨ Features
+## 🚀 Main Features
 
-## 📊 Data Pipeline
-
-- Historical market data
-- Data cleaning
-- Feature engineering
-- Technical indicators
-
----
-
-## 📈 Strategy Engine
-
-- Moving Average
-- RSI
-- MACD
-- Custom strategies
+- **Backtesting Engine**: Event-driven backtesting supporting Moving Average Crossover, RSI, and MACD strategies.
+- **Risk Management**: Dynamic position sizing, configurable risk per trade, slippage, and transaction commissions.
+- **Strategy Optimization**: Grid search parameter optimization, performance ranking, and heatmap visualization.
+- **Walk-Forward Validation**: In-sample and out-of-sample data splitting to measure strategy robustness and prevent overfitting.
+- **Monte Carlo Risk Evaluation**: Trade order permutation simulations calculating Value-at-Risk (P5, P95), win/loss probabilities, and PnL distributions.
+- **Portfolio Analytics**: Multi-asset returns, annualized volatility, Sharpe ratio, max drawdown, correlation heatmaps, and allocation models.
+- **Machine Learning Baseline**: Scikit-Learn Random Forest signal classifier architecture for quantitative signal filtering.
+- **Structured Performance Reporting**: Machine-readable performance summaries and database persistence.
+- **Streamlit Dashboard**: Professional web UI with page navigation, KPI cards, Plotly equity curves, price charts, and strategy comparisons.
 
 ---
 
-## 💰 Backtesting
-
-- Order execution
-- Position sizing
-- Broker simulation
-- Trade history
-- Portfolio tracking
-
----
-
-## 📉 Portfolio Analytics
-
-- Portfolio metrics
-- Strategy comparison
-- Performance analysis
-- Equity curve
-- Trade statistics
-
----
-
-## ⚠ Risk Management
-
-- Position sizing
-- Risk per trade
-- Commission
-- Slippage
-
----
-
-## 🖥 Dashboard
-
-- Streamlit interface
-- Portfolio overview
-- Strategy performance
-- Trade history
-- Interactive charts
-
----
-
-# 📂 Project Structure
+## 📐 Platform Architecture
 
 ```text
 QuantTrade-Pro/
-
-app.py
-
-config/
-core/
-dashboard/
-research/
-data/
-tests/
-
-README.md
-requirements.txt
-pyproject.toml
+├── app.py                     # Streamlit application entry point
+├── requirements.txt           # Deployment dependencies
+├── pyproject.toml             # Package configuration
+├── core/
+│   ├── backtesting/           # Execution engine, portfolio tracking, trade logger
+│   ├── risk/                  # Position sizing, stop loss, risk management
+│   ├── strategies/            # MA, RSI, MACD, Strategy Factory
+│   └── feature_engineering/   # Technical indicators & features
+├── research/
+│   ├── database/              # SQLite experiment tracking repository
+│   ├── experiments/           # Experiment runner & storage
+│   ├── monte_carlo/           # Trade order randomization simulator
+│   ├── optimization/          # Grid search parameter optimizer & heatmaps
+│   ├── portfolio/             # Multi-asset returns, volatility, correlation & allocation
+│   ├── reports/               # Performance report generator
+│   └── walk_forward/          # Walk-forward validation splitters & executors
+├── ml/
+│   ├── models/                # BaseModel & RandomForestModel implementation
+│   ├── dataset.py             # Dataset loader & preprocessor
+│   └── trainer.py             # Model training pipelines
+└── dashboard/                 # Streamlit UI modules (charts, metrics, sidebar, tables)
 ```
 
 ---
 
-# ⚙ Installation
+## 🛠️ Installation & Setup
 
-Clone the repository
-
+### 1. Clone & Navigate
 ```bash
-git clone https://github.com/YOUR_USERNAME/QuantTrade-Pro.git
-```
-
-Go into the project
-
-```bash
+git clone https://github.com/RatishG778/QuantTrade-Pro.git
 cd QuantTrade-Pro
 ```
 
-Create a virtual environment
-
+### 2. Environment Setup
 ```bash
 python -m venv .venv
-```
-
-Activate
-
-Windows
-
-```bash
-.venv\Scripts\activate
-```
-
-Install packages
-
-```bash
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-or
-
-```bash
-pip install -e .
 ```
 
 ---
 
-# ▶ Run
+## 💻 Running the Platform
 
+### Running the Streamlit Dashboard
 ```bash
 streamlit run app.py
 ```
 
----
-
-# 🧪 Run Tests
-
+### Running the Automated Test Suite
 ```bash
-pytest tests
+pytest -q .\tests
 ```
 
 ---
 
-# 🛣 Roadmap
+## 📊 End-to-End Quantitative Workflow
 
-## ✅ Version 1
-
-- Core Backtesting
-
-## ✅ Version 2
-
-- Dashboard
-
-## ✅ Version 3
-
-- Portfolio Analytics
-
-## ✅ Version 4
-
-- Research Framework
-
-## 🔄 Version 5
-
-- Software Engineering
-- Testing
-- Packaging
-- Documentation
-
-## ⏳ Version 6
-
-- Machine Learning
-
-## ⏳ Version 7
-
-- Paper Trading
-
-## ⏳ Version 8
-
-- Live Trading
+```text
+Market Data -> Strategy Signals -> Risk Management -> Backtesting Engine
+    -> Experiment Tracking -> Parameter Optimization -> Walk-Forward Validation
+    -> Monte Carlo Simulation -> Portfolio Analytics -> ML Signal Research
+    -> Structured Reports -> Interactive Dashboard
+```
 
 ---
 
-# 🛠 Tech Stack
+## 🌐 Streamlit Cloud Deployment
 
-- Python
-- Pandas
-- NumPy
-- Plotly
-- Streamlit
-- PyTest
-- TA
-- Git
-- GitHub
+This platform is configured for automated deployment on **Streamlit Cloud** via GitHub integration:
+- **Repository**: `RatishG778/QuantTrade-Pro`
+- **Branch**: `main`
+- **Main File**: `app.py`
+- **Requirements**: `requirements.txt` (Pinned UTF-8 dependencies)
 
 ---
 
-# 📄 License
+## 🔮 Future Roadmap
 
-MIT License
+- **V1.1**: Real-time market data adapters (WebSocket / REST integration)
+- **V1.2**: Paper trading execution harness & simulated order book
+- **V1.3**: Advanced portfolio risk constraints (CVaR, Factor Exposure)
+- **V1.4**: AI Quantitative Research Assistant & LLM strategy generator
+- **V1.5**: Broker API integration adapters (Interactive Brokers, Alpaca)
+- **V2.0**: Production-grade live trading infrastructure
 
 ---
 
-Made with ❤️ by Ratish G
+*QuantTrade-Pro is provided as a quantitative research and backtesting framework. Past performance simulated in backtests does not guarantee future live trading results.*

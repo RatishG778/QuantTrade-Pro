@@ -1,28 +1,37 @@
 # Virtual Environment
 .venv/
+env/
+venv/
 
 # Python
 __pycache__/
 *.py[cod]
+*.so
 
-# VS Code
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# VS Code & Editors
 .vscode/
+.idea/
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Environment
+# Environment & Secrets
 .env
+*.env
+*.secrets.toml
 
 # OS
 .DS_Store
 Thumbs.db
-# QuantTrade-Pro runtime files
-logs/*.log
-research/database/*.db
-knowledge.json
 
-# Runtime-generated files
-knowledge.json
+# QuantTrade-Pro runtime & generated files
 logs/*.log
 research/database/*.db
+*.egg-info/
+project_structure.txt
+test_archive/

@@ -4,8 +4,21 @@ from config.constants import SYMBOLS, STRATEGIES
 
 
 def sidebar():
+    st.sidebar.title("⚙️ Backtest Settings")
 
-    st.sidebar.title("⚙ Backtest Settings")
+    navigation = st.sidebar.radio(
+        "Navigation",
+        [
+            "Overview & Backtest",
+            "Research & Optimization",
+            "Monte Carlo Simulation",
+            "Portfolio Analytics",
+            "ML Research",
+            "Experiment History"
+        ]
+    )
+
+    st.sidebar.divider()
 
     symbol = st.sidebar.selectbox(
         "Stock",
@@ -42,13 +55,15 @@ def sidebar():
         "Strategy",
         STRATEGIES
     )
+
     compare = st.sidebar.checkbox(
-    "Compare All Strategies"
-)
+        "Compare All Strategies"
+    )
 
     run = st.sidebar.button("▶ Run Backtest")
 
     return {
+        "navigation": navigation,
         "symbol": symbol,
         "capital": initial_capital,
         "risk": risk,

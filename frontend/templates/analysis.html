@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header analysis-header">
+  <div>
+    <p class="eyebrow">Quant research / Historical data</p>
+    <h1>Research &amp; Analytics</h1>
+    <p class="page-subtitle">Computed from local feature data. No live prices or account values.</p>
+  </div>
+  <form class="analysis-controls" id="analysis-controls">
+    <label>
+      Symbol
+      <select id="analysis-symbol" name="symbol" required>
+        <option value="">Loading datasets...</option>
+      </select>
+    </label>
+    <label>
+      Monte Carlo strategy
+      <select id="analysis-strategy" name="strategy">
+        <option>Moving Average</option>
+        <option>RSI</option>
+        <option>MACD</option>
+      </select>
+    </label>
+    <button class="primary small" id="run-analysis" type="submit">Run analysis</button>
+    <button class="secondary small" id="export-analysis" type="button" disabled>Export JSON</button>
+  </form>
+</section>
+
+<section class="data-refresh-strip" aria-label="Historical market data status">
+  <div class="data-refresh-copy">
+    <p class="eyebrow">Historical data controls</p>
+    <h2>Dataset provenance</h2>
+    <p>Refresh is manual and retrieves adjusted daily bars. It does not connect to or submit orders.</p>
+  </div>
+  <div class="data-provenance">
+    <strong id="data-freshness">Checking local data...</strong>
+    <span id="data-provider">Provider: checking</span>
+    <span id="data-validation">Validation: checking</span>
+  </div>
+  <div class="data-refresh-controls">
+    <label for="refresh-period">History window</label>
+    <select id="refresh-period">
+      <option value="1y">1 year</option>
+      <option value="2y">2 years</option>
+      <option value="5y" selected>5 years</option>
+    </select>
+    <button class="secondary small" id="refresh-market-data" type="button">Refresh history</button>
+  </div>
+  <p class="refresh-state" id="refresh-state" role="status" aria-live="polite">No refresh requested.</p>
+</section>
+
+<div class="analysis-state" id="analysis-state" role="status" aria-live="polite">Loading local dataset catalog...</div>
+
+<section class="dataset-strip" aria-label="Selected dataset metadata">
+  <span id="dataset-description">No dataset selected.</span>
+  <span class="badge neutral" id="analysis-source">LOCAL</span>
+</section>
+
+<section class="stats-grid analysis-kpis">
+  <article class="stat-card accent"><span class="stat-label">Historical total return</span><strong class="stat-value" id="market-total-return">--</strong><small id="market-date-range">Selected dataset</small></article>
+  <article class="stat-card"><span class="stat-label">Annualized volatility</span><strong class="stat-value" id="market-volatility">--</strong><small>Daily close returns</small></article>
+  <article class="stat-card"><span class="stat-label">Sharpe ratio</span><strong class="stat-value" id="market-sharpe">--</strong><small>Zero risk-free rate</small></article>
+  <article class="stat-card"><span class="stat-label">Maximum drawdown</span><strong class="stat-value" id="market-drawdown">--</strong><small>Historical close series</small></article>
+</section>
+
+<section class="analysis-layout">
+  <article class="panel chart-panel">
+    <div class="panel-header"><div><p class="eyebrow">Strategy analysis</p><h2>Growth of 100</h2></div><span class="badge neutral">Net of assumed costs</span></div>
+    <canvas id="equity-chart" role="img" aria-label="Strategy performance chart"></canvas>
+    <div class="chart-legend" id="equity-chart-legend"></div>
+  </article>
+  <article class="panel technical-panel">
+    <div class="panel-header"><div><p class="eyebrow">Latest observation</p><h2>Technical readings</h2></div><span class="badge neutral" id="technical-date">--</span></div>
+    <dl class="technical-list">
+      <div><dt>Close</dt><dd id="technical-close">--</dd></div>
+      <div><dt>SMA 20</dt><dd id="technical-sma-20">--</dd></div>
+      <div><dt>SMA 50</dt><dd id="technical-sma-50">--</dd></div>
+      <div><dt>RSI</dt><dd id="technical-rsi">--</dd></div>
+      <div><dt>MACD / Signal</dt><dd id="technical-macd">--</dd></div>
+      <div><dt>ATR</dt><dd id="technical-atr">--</dd></div>
+      <div><dt>Daily return</dt><dd id="technical-daily-return">--</dd></div>
+    </dl>
+  </article>
+</section>
+
+<section class="panel analysis-section">
+  <div class="panel-header"><div><p class="eyebrow">Signal-driven backtest study</p><h2>Strategy comparison</h2></div><span class="badge neutral">One-bar signal lag</span></div>
+  <div class="table-shell"><table id="strategy-comparison"><thead><tr><th scope="col">Strategy</th><th scope="col">Total return</th><th scope="col">Annualized vol.</th><th scope="col">Sharpe</th><th scope="col">Max drawdown</th><th scope="col">Entries</th></tr></thead><tbody id="strategy-results"><tr><td colspan="6" class="table-state">Run an analysis to compare strategies.</td></tr></tbody></table></div>
+</section>
+
+<section class="analysis-layout">
+  <article class="panel">
+    <div class="panel-header"><div><p class="eyebrow">Multi-asset view</p><h2>Equal-weight portfolio</h2></div><span class="badge neutral" id="portfolio-symbol-count">--</span></div>
+    <div class="metric-grid three-columns"><div><span>Annualized return</span><strong id="portfolio-return">--</strong></div><div><span>Annualized volatility</span><strong id="portfolio-volatility">--</strong></div><div><span>Sharpe</span><strong id="portfolio-sharpe">--</strong></div></div>
+    <p class="small-note">Equal-weight daily close returns across all available local symbols; no rebalancing costs applied.</p>
+  </article>
+  <article class="panel">
+    <div class="panel-header"><div><p class="eyebrow">Historical tail risk</p><h2>Daily loss estimates</h2></div><span class="badge warning">95% level</span></div>
+    <div class="metric-grid two-columns"><div><span>VaR</span><strong id="risk-var">--</strong></div><div><span>Conditional VaR</span><strong id="risk-cvar">--</strong></div></div>
+    <p class="small-note">Historical one-day return quantile and mean return in the 5% left tail.</p>
+  </article>
+</section>
+
+<section class="analysis-layout">
+  <article class="panel">
+    <div class="panel-header"><div><p class="eyebrow">Cross-asset dependence</p><h2>Return correlation</h2></div><span class="badge neutral">Daily close returns</span></div>
+    <div class="table-shell correlation-shell"><table id="correlation-matrix" class="correlation-table" aria-label="Cross-asset return correlation matrix"><tbody><tr><td class="table-state">Waiting for analysis.</td></tr></tbody></table></div>
+  </article>
+  <article class="panel" id="monte-carlo-results">
+    <div class="panel-header"><div><p class="eyebrow">Return-path stress</p><h2>Monte Carlo bootstrap</h2></div><span class="badge neutral">252 trading days</span></div>
+    <div class="metric-grid two-columns"><div><span>Probability of loss</span><strong id="mc-probability-loss">--</strong></div><div><span>5th percentile</span><strong id="mc-p5">--</strong></div><div><span>Median outcome</span><strong id="mc-median">--</strong></div><div><span>95th percentile</span><strong id="mc-p95">--</strong></div></div>
+    <p class="small-note" id="mc-method">Historical daily returns resampled with replacement.</p>
+  </article>
+</section>
+
+<section class="panel analysis-section">
+  <div class="panel-header"><div><p class="eyebrow">Research readiness</p><h2>Analysis not yet connected</h2></div></div>
+  <div class="readiness-grid"><div><strong>Parameter optimization</strong><span id="readiness-optimization">Checking</span></div><div><strong>Walk-forward validation</strong><span id="readiness-walk-forward">Checking</span></div><div><strong>Machine learning</strong><span id="readiness-ml">Checking</span></div></div>
+</section>
+
+<p class="dashboard-footnote" id="analysis-assumptions">Analysis assumptions will appear here after the first run.</p>
+{% endblock %}
+
+{% block page_scripts %}
+<script src="{{ url_for('static', path='js/analysis.js') }}"></script>
+{% endblock %}

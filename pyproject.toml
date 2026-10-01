@@ -17,9 +17,12 @@ dependencies = [
     "pandas",
     "numpy",
     "plotly",
-    "streamlit",
     "ta",
-    "pytest"
+    "pytest",
+    "fastapi",
+    "uvicorn",
+    "httpx",
+    "yfinance>=1.5,<2"
 ]
 
 [tool.setuptools.packages.find]
@@ -28,5 +31,7 @@ include = [
     "core*",
     "config*",
     "dashboard*",
-    "research*"
+    "research*",
+    "backend*",
+    "quant*"
 ]

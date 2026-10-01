@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Operations / PAPER</p>
+    <h1>System status</h1>
+    <p class="page-subtitle">Execution is not connected to a broker or funded account.</p>
+  </div>
+  <span class="badge warning">Live disabled</span>
+</section>
+
+<section class="demo-notice" aria-live="polite">
+  <span class="notice-indicator" aria-hidden="true"></span>
+  <div>
+    <strong>Account data unavailable</strong>
+    <span>No portfolio equity, open positions, orders, or fills are reported. No demo account values are shown.</span>
+  </div>
+</section>
+
+<section class="dashboard-grid">
+  <article class="panel">
+    <div class="panel-header">
+      <div>
+        <p class="eyebrow">Research data</p>
+        <h2>Local historical coverage</h2>
+      </div>
+      <span class="badge neutral" id="data-source-status">Scanning</span>
+    </div>
+    <div class="signal-row">
+      <span>Available symbols</span>
+      <strong id="operations-dataset-count">Loading</strong>
+    </div>
+    <div class="signal-row">
+      <span>Date range</span>
+      <strong id="operations-date-range">Loading</strong>
+    </div>
+    <a class="primary small action-link" href="/analysis">Open research analysis</a>
+  </article>
+
+  <article class="panel">
+    <div class="panel-header">
+      <div>
+        <p class="eyebrow">Execution controls</p>
+        <h2>Safety state</h2>
+      </div>
+      <span class="badge warning">PAPER</span>
+    </div>
+    <div class="signal-row">
+      <span>Live execution</span>
+      <strong>Disabled</strong>
+    </div>
+    <div class="signal-row">
+      <span>Broker adapter</span>
+      <strong>Not connected</strong>
+    </div>
+    <div class="signal-row">
+      <span>API health</span>
+      <strong id="api-health">Checking</strong>
+    </div>
+  </article>
+</section>
+
+<p class="dashboard-footnote">Portfolio risk metrics remain unavailable until a portfolio data source is connected.</p>
+{% endblock %}

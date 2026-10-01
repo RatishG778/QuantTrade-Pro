@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title or 'QuantTrade Pro' }}</title>
+    <meta name="description" content="Production-grade quantitative trading platform dashboard." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">QT</div>
+          <div>
+            <div class="brand-title">QuantTrade Pro</div>
+            <div class="brand-subtitle">Research workspace</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-item {% if request.url.path == '/' %}active{% endif %}" href="/">Overview</a>
+          <a class="nav-item {% if request.url.path == '/analysis' %}active{% endif %}" href="/analysis">Research &amp; Analytics</a>
+          <a class="nav-item {% if request.url.path == '/dashboard' %}active{% endif %}" href="/dashboard">Operations</a>
+          <a class="nav-item" href="/health">Health API</a>
+        </nav>
+
+        <div class="sidebar-card">
+          <div class="eyebrow">Environment</div>
+          <div class="status-dot-wrap">
+            <span class="status-dot" aria-hidden="true"></span>
+            <strong id="environment-mode">PAPER MODE</strong>
+          </div>
+          <small>No brokerage connection. Live execution remains disabled.</small>
+        </div>
+      </aside>
+
+      <main class="content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', path='js/app.js') }}"></script>
+    {% block page_scripts %}{% endblock %}
+  </body>
+</html>

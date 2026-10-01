@@ -151,5 +151,32 @@
         "lesson": "Avoid sideways market.",
         "next_step": "Test with ADX filter.",
         "created_at": "2026-09-01T17:04:21.936778"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-10-01T11:51:41.835282"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-10-01T11:53:03.566044"
+    },
+    {
+        "experiment_id": 1,
+        "strategy": "Moving Average",
+        "title": "First Success",
+        "observation": "Worked well in trending market.",
+        "lesson": "Avoid sideways market.",
+        "next_step": "Test with ADX filter.",
+        "created_at": "2026-10-01T12:08:03.151074"
     }
 ]

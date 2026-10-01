@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Quant research workspace</p>
+    <h1>Research strategy behavior against historical market data.</h1>
+    <p class="lead">
+      Explore technical signals, compare rule-based strategies, measure portfolio risk, and stress return paths
+      using the datasets stored in this workspace.
+    </p>
+    <div class="actions">
+      <a class="primary" href="/analysis">Open Research</a>
+      <a class="secondary" href="/dashboard">Operations</a>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div class="panel-topline">
+      <span class="mini-label">Local data coverage</span>
+      <span class="chip warning">Historical only</span>
+    </div>
+    <div class="metric-inline">
+      <span class="label">Available symbols</span>
+      <strong id="dataset-count">Loading</strong>
+    </div>
+    <div class="metric-inline">
+      <span class="label">Date coverage</span>
+      <strong id="dataset-date-range">Loading</strong>
+    </div>
+    <div class="metric-inline">
+      <span class="label">Broker connection</span>
+      <strong>None</strong>
+    </div>
+    <div class="coverage-note">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>Analysis uses local feature CSVs; live prices and account data are not connected.</span>
+    </div>
+  </div>
+</section>
+
+<section class="feature-band">
+  <div class="section-heading">
+    <p class="eyebrow">Analysis modules</p>
+    <h2>One report, multiple lenses on risk and performance.</h2>
+  </div>
+
+  <div class="feature-grid">
+    <article class="info-card">
+      <span class="card-kicker">01 / MARKET</span>
+      <h3>Market &amp; technicals</h3>
+      <p>Review price history, annualized return and volatility, drawdown, tail risk, and latest indicators.</p>
+    </article>
+    <article class="info-card">
+      <span class="card-kicker">02 / STRATEGY</span>
+      <h3>Strategy comparison</h3>
+      <p>Compare moving-average, RSI, and MACD behavior with one-bar signal lag and configured transaction costs.</p>
+    </article>
+    <article class="info-card">
+      <span class="card-kicker">03 / PORTFOLIO</span>
+      <h3>Portfolio &amp; scenarios</h3>
+      <p>Inspect equal-weight portfolio risk, cross-asset correlation, and bootstrap return distributions.</p>
+    </article>
+  </div>
+</section>
+
+<p class="dashboard-footnote">Research outputs are historical simulations, not live account performance or investment advice.</p>
+{% endblock %}
